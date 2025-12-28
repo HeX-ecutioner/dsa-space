@@ -1,6 +1,5 @@
-# Two Pointers
+# ✌️Two Pointers
 
-## Introduction
 The **Two Pointers** technique is one of the most powerful and versatile problem-solving patterns
 in data structures and algorithms. Unlike sorting or searching (which are algorithms with clear
 procedures), Two Pointers is a **strategy** that allows us to process sequences efficiently by
@@ -14,7 +13,7 @@ and the most common patterns encountered in real problems.
 
 ---
 
-## What is the Two Pointers Technique?
+## 1️⃣ What is the Two Pointers Technique?
 
 Two Pointers uses **two index variables** that move across a data structure (usually an array or a string).
 These pointers may:
@@ -29,7 +28,7 @@ In all cases, the idea is to **process the structure in linear time without nest
 
 ---
 
-## Why Use Two Pointers?
+## 2️⃣ Why Use Two Pointers?
 
 Traditional nested loops often look like:
 ```py
@@ -52,7 +51,7 @@ keeping the overall complexity at **O(n)**.
 
 ---
 
-## When to Apply Two Pointers (Recognition Guide)
+## 3️⃣ When to Apply Two Pointers (Recognition Guide)
 
 You should think of Two Pointers when:
 
@@ -78,7 +77,7 @@ Two Pointers is not one algorithm — it is a general way of thinking.
 
 ---
 
-## Core Variations of Two Pointers
+## 4️⃣ Core Variations of Two Pointers
 
 Two Pointers can be categorized into several standard patterns:
 
@@ -148,7 +147,7 @@ Each additional pointer adds constraints but follows the same principles.
 
 ---
 
-## Intuition Behind Pointer Movement
+## 5️⃣ Intuition Behind Pointer Movement
 
 The main idea is this:
 
@@ -169,7 +168,7 @@ The power of Two Pointers comes from the **logical decision-making** behind each
 
 ---
 
-## Time and Space Complexity
+## 6️⃣ Time and Space Complexity
 
 ### Time Complexity
 Most Two Pointer solutions run in **O(n)** because:
@@ -187,7 +186,7 @@ Exceptions include:
 
 ---
 
-## Limitations of Two Pointers
+## 7️⃣ Limitations of Two Pointers
 
 Two Pointers does *not* work well when:
 - Data is not sorted (for sorted-array pointer techniques)
@@ -199,7 +198,7 @@ It is not a universal solution but excels in the right scenarios.
 
 ---
 
-## Why Two Pointers Matters So Much
+## 8️⃣ Why Two Pointers Matters So Much
 
 Two Pointers builds the foundation for:
 - Sliding Window  
@@ -220,7 +219,7 @@ Mastering it gives you a competitive advantage in interviews and contests.
 
 ---
 
-## Summary
+## 9️⃣ Summary
 
 The Two Pointers technique is an essential, adaptable strategy used to solve a wide
 variety of problems efficiently. It allows developers to convert quadratic solutions
