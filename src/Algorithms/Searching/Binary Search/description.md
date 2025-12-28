@@ -43,15 +43,3 @@ return -1
 
 ## Space Complexity
 - O(1)
-
----
-
-## Advanced Problems (Included in the folder)
-- Find the **first (leftmost)** occurrence of target in a sorted array with duplicates.
-- Find the **last (rightmost)** occurrence of target.
-- **Lower bound / Upper bound** implementations (first >= x / first > x).
-- **Search in a rotated sorted array** (no duplicates & with duplicates).
-- **Binary Search on Answer** (minimize/maximize threshold over monotonic predicate).
-- **Kth smallest element in a sorted matrix** (use binary search on value).
-- **Find peak element** using binary-search-like checks.
-- **Integer square root** using binary search.
