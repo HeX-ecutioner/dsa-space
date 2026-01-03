@@ -1,8 +1,8 @@
 const fs = require("fs"),
     path = require("path"),
-    SRC_DIR = path.join(process.cwd(), "src");
+    rootDir = path.join(process.cwd(), "src");
 
-function listFolders(dir, prefix = "") {
+function listDirectories(dir, prefix = "") {
     let entries;
     try {
         entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -18,19 +18,18 @@ function listFolders(dir, prefix = "") {
         console.log(prefix + connector + entry.name);
         if (entry.isDirectory()) {
             const extension = isLast ? "    " : "│   ";
-            listFolders(fullPath, prefix + extension);
+            listDirectories(fullPath, prefix + extension);
         }
     });
 }
 
 function main() {
-    if (!fs.existsSync(SRC_DIR) || !fs.statSync(SRC_DIR).isDirectory()) {
+    if (!fs.existsSync(rootDir) || !fs.statSync(rootDir).isDirectory()) {
         console.error("❌ src directory not found in current working directory.");
         process.exit(1);
     }
-
     console.log("src");
-    listFolders(SRC_DIR);
+    listDirectories(rootDir);
 }
 
 main();
