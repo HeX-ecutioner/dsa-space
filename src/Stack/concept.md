@@ -1,4 +1,4 @@
-# 🧱 Stack Data Structure
+# 📚 Stack Data Structure
 
 The **Stack** is one of the most fundamental and widely used data structures in computer science.
 It represents a collection of elements with a very strict access rule, making it simple, fast,
