@@ -167,19 +167,8 @@ def main():
 
     while True:
         print(
-            "\n--- Singly Linked List Menu ---\n"
-            "1. Insert at Beginning\n"
-            "2. Insert at End\n"
-            "3. Insert at Position\n"
-            "4. Delete from Beginning\n"
-            "5. Delete from End\n"
-            "6. Delete by Value\n"
-            "7. Search\n"
-            "8. Display\n"
-            "9. Reverse\n"
-            "10. Find Middle\n"
-            "11. Size\n"
-            "0. Exit"
+            "\n--- Singly Linked List Menu ---\n1. Insert at Beginning\n2. Insert at End\n3. Insert at Position\n4. Delete from Beginning"
+            "\n5. Delete from End\n6. Delete by Value\n7. Search\n8. Display\n9. Reverse\n10. Find Middle\n11. Size\n0. Exit"
         )
 
         ch = input("\nEnter choice: ").strip()
