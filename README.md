@@ -14,6 +14,21 @@ To achieve that, this repository is designed around:
 
 ---
 
+## 🖥️ Interactive Web Dashboard
+
+This repository serves as a **fully functional, interactive side-by-side reading app** designed to cleanly present problems natively.
+
+Instead of browsing heavily through raw files locally, you can launch a local React UI to navigate the folders visually:
+
+1. Open your terminal in the root folder.
+2. Run `npm install` (first time only).
+3. Run `npm run dev`.
+4. Open the localhost link in your browser!
+
+The UI will automatically coordinate parsing hierarchies and beautifully render any `.md` contextual text alongside the accompanying `.py` (or identical cpp/java code strings) in a premium dark-mode interface. 
+
+---
+
 ## 🧠 Philosophy of Use
 
 This is **not** a LeetCode dump or a cheat-sheet repo.
@@ -25,50 +40,52 @@ This repo assumes:
 - You are okay going **slow now to go fast later**
 
 ### Recommended workflow:
-1. Read the `concept.md` of a topic
-2. Understand the `description.md` of a problem before looking at the code
-3. Try solving the problem yourself
-4. Compare with the `solution.py` and add notes or variations if needed
+1. Fire up the Interactive Dashboard (`npm run dev`) or use your IDE.
+2. Read the `concept.md` of a topic
+3. Understand the `description.md` of a problem before looking at the code
+4. Try solving the problem yourself
+5. Compare with the `solution.py` and add notes or variations if needed
 
-If you skip step 3, you lose most of the benefit ;)
+If you skip step 4, you lose most of the benefit ;)
 
 ---
 
 ## 🗂️ Repository Structure
 
-```
+```text
 /src
-    /Topic
-        /SubTopic
-            solution.py
-            description.md
-        concept.md
-    /AnotherTopic
-        /SubTopicContainingImportantProblems
-            /Problems
+    /notes                 <-- All actual DSA concepts live here
+        /Topic
+            /SubTopic
                 solution.py
-            solution.py
-            description.md
-        concept.md
-/utils/cleaner.js
-.gitignore
-LICENSE
-README.md
+                description.md
+            concept.md
+        /AnotherTopic
+            /SubTopicContainingImportantProblems
+                /Problems
+                    solution.py
+                solution.py
+                description.md
+            concept.md
+    /components            <-- React Web UI Logic
+    App.tsx                <-- React Web UI Framework
+package.json               <-- Project Dependencies
+vite.config.ts             <-- Compilation Engine
 ```
 
 ### Why this structure?
-- Mirrors **standard DSA syllabus** used in exams & interviews
-- Separates **data structures** from **algorithmic paradigms**
-- Makes navigation intuitive and scalable
+- All foundational data naturally binds sequentially under `/src/notes`.
+- Mirrors standard DSA syllabus used in exams & interviews.
+- Separates algorithmic frameworks cleanly from frontend rendering.
 
 ---
 
 ## 📁 Folder Conventions
 
-Each topic folder follows the same internal structure:
+Each topic folder follows the exact identical internal structure natively:
 
-```
-/TopicName
+```text
+/src/notes/TopicName
     concept.md     # Conceptual explanation of the topic
     /ProblemName
         solution.py    # Fully commented Python implementation
