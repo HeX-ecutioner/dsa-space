@@ -1,8 +1,10 @@
 {
-  "name": "react_temp",
+  "name": "dsa-space",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "license": "MIT",
+  "author": "Sagnik Maitra",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
