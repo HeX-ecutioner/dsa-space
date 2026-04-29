@@ -121,24 +121,24 @@ function App() {
         ) : (
           <>
             { /* Left Pane (Documentation) */ }
-            <div className={`pane left-pane ${!rightContent ? 'pane-centered' : ''}`}>
-              <div className="pane-header">
-                <span className="pane-title">{leftTitle || 'Documentation'}</span>
+            {(leftContent || leftLoading) && (
+              <div className={`pane left-pane ${!rightContent ? 'pane-centered' : ''}`}>
+                <div className="pane-header">
+                  <span className="pane-title">{leftTitle || 'Documentation'}</span>
+                </div>
+                <div className="pane-content">
+                  {leftLoading ? (
+                    <div className="loading">Fetching...</div>
+                  ) : (
+                    <MarkdownViewer content={leftContent} />
+                  )}
+                </div>
               </div>
-              <div className="pane-content">
-                {leftLoading ? (
-                  <div className="loading">Fetching...</div>
-                ) : leftContent ? (
-                  <MarkdownViewer content={leftContent} />
-                ) : (
-                  <div className="empty-state">No documentation available for this view.</div>
-                )}
-              </div>
-            </div>
+            )}
 
             { /* Right Pane (Code) */ }
             {rightContent && (
-              <div className="pane right-pane">
+              <div className={`pane right-pane ${!(leftContent || leftLoading) ? 'pane-centered' : ''}`}>
                 <div className="pane-header">
                   <span className="pane-title">{rightTitle || 'Code'}</span>
                 </div>
