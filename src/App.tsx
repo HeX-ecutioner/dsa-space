@@ -20,6 +20,10 @@ function App() {
   const [leftTitle, setLeftTitle] = useState('')
   const [rightTitle, setRightTitle] = useState('')
 
+  // Mobile state variables
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [mobileActiveTab, setMobileActiveTab] = useState<'doc' | 'code'>('doc')
+
   useEffect(() => {
     const fileTree = fetchFiles()
     setTree(fileTree)
@@ -49,7 +53,15 @@ function App() {
     if (!node.path || !tree) return
     setActivePath(node.path)
     
+    // Close sidebar and switch tabs automatically on mobile selection
+    setIsSidebarOpen(false)
     const ext = getExt(node.name)
+    if (isMd(ext)) {
+      setMobileActiveTab('doc')
+    } else {
+      setMobileActiveTab('code')
+    }
+    
     const siblings = findSiblings(tree, node.path)
     
     let mdNode: FileNode | undefined
@@ -107,22 +119,81 @@ function App() {
     }
   }
 
+  const getActiveTitle = () => {
+    if (!activePath) return 'DSA Space'
+    const cleanPath = activePath.replace('../notes/', '')
+    const parts = cleanPath.split('/')
+    if (parts.length > 1) {
+      return parts[parts.length - 2]
+    }
+    return parts[0]
+  }
+
   if (!tree) return <div className="loading">Loading Environment...</div>
 
   return (
-    <div className="layout-container">
+    <div className={`layout-container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+      {/* Mobile Top Header Bar */}
+      <div className="mobile-header">
+        <button 
+          className="mobile-sidebar-toggle" 
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          aria-label="Toggle Sidebar"
+        >
+          {isSidebarOpen ? (
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          )}
+        </button>
+        <span className="mobile-header-title">{getActiveTitle()}</span>
+        <div style={{ width: 24 }}></div> {/* Balance layout spacer */}
+      </div>
+
+      {/* Blurred Backdrop Drawer Overlay */}
+      {isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>
+      )}
+
       <div className="sidebar-container">
         <Sidebar tree={tree} onSelectFile={handleSelectFile} activePath={activePath} />
       </div>
       
       <div className="panes-container">
+        {/* Mobile Tab Swapping Control */}
+        {activePath && (leftContent || leftLoading) && rightContent && (
+          <div className="mobile-tabs-container">
+            <button 
+              className={`mobile-tab-btn ${mobileActiveTab === 'doc' ? 'active' : ''}`}
+              onClick={() => setMobileActiveTab('doc')}
+            >
+              <span className="tab-icon">📖</span>
+              <span>Doc</span>
+            </button>
+            <button 
+              className={`mobile-tab-btn ${mobileActiveTab === 'code' ? 'active' : ''}`}
+              onClick={() => setMobileActiveTab('code')}
+            >
+              <span className="tab-icon">💻</span>
+              <span>Code</span>
+            </button>
+          </div>
+        )}
+
         {!activePath ? (
           <Hero />
         ) : (
           <>
             { /* Left Pane (Documentation) */ }
             {(leftContent || leftLoading) && (
-              <div className={`pane left-pane ${!rightContent ? 'pane-centered' : ''}`}>
+              <div className={`pane left-pane ${!rightContent ? 'pane-centered' : ''} ${mobileActiveTab === 'doc' ? 'mobile-active' : ''}`}>
                 <div className="pane-header">
                   <span className="pane-title">{leftTitle || 'Documentation'}</span>
                 </div>
@@ -138,7 +209,7 @@ function App() {
 
             { /* Right Pane (Code) */ }
             {rightContent && (
-              <div className={`pane right-pane ${!(leftContent || leftLoading) ? 'pane-centered' : ''}`}>
+              <div className={`pane right-pane ${!(leftContent || leftLoading) ? 'pane-centered' : ''} ${mobileActiveTab === 'code' ? 'mobile-active' : ''}`}>
                 <div className="pane-header">
                   <span className="pane-title">{rightTitle || 'Code'}</span>
                 </div>

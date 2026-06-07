@@ -401,3 +401,227 @@ body {
     transform: translateY(0px);
   }
 }
+
+/* Mobile Layout Defaults (Desktop View) */
+.mobile-header {
+  display: none;
+}
+.sidebar-overlay {
+  display: none;
+}
+.mobile-tabs-container {
+  display: none;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+
+  .mobile-header {
+    display: flex;
+    height: 56px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--padding-md);
+    background-color: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .mobile-sidebar-toggle {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: var(--radius-md);
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .mobile-sidebar-toggle:hover {
+    background-color: var(--bg-hover);
+    color: var(--text-accent);
+  }
+
+  .mobile-header-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    font-family: var(--font-sans);
+    letter-spacing: -0.3px;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(11, 14, 20, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 999;
+    animation: fadeInOverlay 0.2s ease-out;
+  }
+
+  .sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 290px;
+    min-width: 290px;
+    z-index: 1000;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    border-radius: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .layout-container.sidebar-open .sidebar-container {
+    transform: translateX(0);
+  }
+
+  .layout-container {
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .panes-container {
+    flex-direction: column;
+    padding: var(--padding-md);
+    gap: var(--padding-md);
+    height: calc(100vh - 56px);
+    overflow-y: hidden;
+  }
+
+  /* Segmented tabs switcher */
+  .mobile-tabs-container {
+    display: flex;
+    background: rgba(21, 26, 35, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 4px;
+    gap: 4px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin-bottom: 4px;
+  }
+
+  .mobile-tab-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-tab-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .mobile-tab-btn.active {
+    background-color: var(--bg-active);
+    color: var(--text-accent);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .mobile-tab-btn .tab-icon {
+    font-size: 1rem;
+  }
+
+  /* Hide tabs and adjust margins inside panes when side-by-side isn't visible */
+  .pane {
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .pane.mobile-active {
+    display: flex;
+    animation: slideUpFade 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .pane-centered {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .hero-container {
+    padding: var(--padding-md);
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
+  .hero-content {
+    padding-top: var(--padding-lg);
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+
+  .hero-features {
+    padding: var(--padding-md);
+    text-align: left;
+  }
+
+  .feature {
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
